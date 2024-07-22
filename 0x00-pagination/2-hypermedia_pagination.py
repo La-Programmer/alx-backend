@@ -52,6 +52,8 @@ class Server:
         """
         Return certain hypermedia values
         """
+        assert type(page) is int and type(page_size) is int
+        assert page > 0 and page_size > 0
         page_data: List[List] = self.get_page(page, page_size)
         dataset_length: int = len(self.__dataset)
         next_page = page + 1 if page + 1 <= dataset_length else None
