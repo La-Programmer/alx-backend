@@ -56,7 +56,7 @@ class Server:
         assert page > 0 and page_size > 0
         page_data: List[List] = self.get_page(page, page_size)
         dataset_length: int = len(self.__dataset)
-        next_page = page + 1 if page + 1 <= dataset_length else None
+        next_page = page + 1 if page + 1 <= (dataset_length / page_size) else None
         prev_page = page - 1 if page - 1 > 0 else None
         result_dict: dict = {
             'page_size': page_size,
