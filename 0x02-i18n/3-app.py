@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Flask application"""
 
-from flask import Flask, render_template, Request
+from flask import Flask, render_template, request
 from flask_babel import Babel, gettext
 
 
@@ -14,7 +14,7 @@ class Config:
 
 def get_locale() -> str:
     """Get locale"""
-    return Request.accept_languages.best_match(Config.LANGUAGES)
+    return request.accept_languages.best_match(Config.LANGUAGES)
 
 
 app = Flask(__name__)
@@ -26,7 +26,7 @@ app.config['BABEL_DEFAULT_TIMEZONE'] = 'UTC'
 @app.route("/")
 def hello() -> str:
     """Root route"""
-    return render_template('0-index.html')
+    return render_template('3-index.html')
 
 
 if __name__ == '__main__':

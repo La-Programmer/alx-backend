@@ -2,7 +2,7 @@
 """Flask application"""
 
 from flask import Flask, render_template, request
-from flask_babel import Babel
+from flask_babel import Babel, gettext
 
 
 class Config:
@@ -12,21 +12,26 @@ class Config:
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
+app = Flask(__name__)
+babel = Babel(app)
+app.config.from_object(Config)
+
+
 def get_locale() -> str:
     """Get locale"""
-    return request.accept_languages.best_match(Config.LANGUAGES)
+    if 'locale' not in request.args or request.args['locale'] not in Config.LANGUAGES:
+        return request.accept_languages.best_match(Config.LANGUAGES)
+    else:
+        return request.args['locale']
 
 
-app = Flask(__name__)
-babel = Babel(app, locale_selector=get_locale)
-app.config['BABEL_DEFAULT_LOCALE'] = Config.LANGUAGES[0]
-app.config['BABEL_DEFAULT_TIMEZONE'] = 'UTC'
+babel.init_app(app, locale_selector=get_locale)
 
 
 @app.route("/")
 def hello() -> str:
     """Root route"""
-    return render_template('2-index.html')
+    return render_template('4-index.html')
 
 
 if __name__ == '__main__':
