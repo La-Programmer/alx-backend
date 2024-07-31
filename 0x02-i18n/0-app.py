@@ -2,20 +2,15 @@
 """Flask application"""
 
 from flask import Flask, render_template
-from flask_babel import Babel
-from config import Config
 
 
 app = Flask(__name__)
-babel = Babel(app)
-app.config['BABEL_DEFAULT_LOCALE'] = Config.LANGUAGES[0]
-app.config['BABEL_DEFAULT_TIMEZONE'] = 'UTC'
+
 
 @app.route("/")
-def hello():
+def hello() -> str:
     """Root route"""
     return render_template('0-index.html')
-
 
 if __name__ == '__main__':
     """Main Function"""
