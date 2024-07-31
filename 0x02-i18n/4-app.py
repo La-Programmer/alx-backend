@@ -19,10 +19,11 @@ app.config.from_object(Config)
 
 def get_locale() -> str:
     """Get locale"""
-    if 'locale' not in request.args or request.args['locale'] not in Config.LANGUAGES:
+    args = request.args
+    if 'locale' not in args or args['locale'] not in Config.LANGUAGES:
         return request.accept_languages.best_match(Config.LANGUAGES)
     else:
-        return request.args['locale']
+        return args['locale']
 
 
 babel.init_app(app, locale_selector=get_locale)
