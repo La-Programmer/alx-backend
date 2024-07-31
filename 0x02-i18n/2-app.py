@@ -3,7 +3,13 @@
 
 from flask import Flask, render_template, Request
 from flask_babel import Babel
-from config import Config
+
+
+class Config:
+    """Config Class"""
+    LANGUAGES = ['en', 'fr']
+    BABEL_DEFAULT_LOCALE = LANGUAGES[0]
+    BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
 def get_locale() -> str:
