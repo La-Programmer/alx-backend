@@ -12,6 +12,7 @@ def hello() -> str:
     """Root route"""
     return render_template('0-index.html')
 
+
 if __name__ == '__main__':
     """Main Function"""
     host = '0.0.0.0'
