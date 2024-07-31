@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Flask application"""
+"""Flask application Module"""
 
 from flask import Flask, render_template, Request
 from flask_babel import Babel
 
 
 class Config:
-    """Config Class"""
+    """Config Class for flask"""
     LANGUAGES = ['en', 'fr']
     BABEL_DEFAULT_LOCALE = LANGUAGES[0]
     BABEL_DEFAULT_TIMEZONE = 'UTC'
@@ -19,7 +19,7 @@ app.config.from_object(Config)
 
 @app.route("/")
 def hello():
-    """Root route"""
+    """Root route for flask app"""
     return render_template('1-index.html')
 
 
