@@ -58,11 +58,15 @@ for (const notification of jobs) {
     }
   })
 
-  notification_job.on('failed', () => {
-    console.log(`Notification job ${notification_job.id} failed`);
+  notification_job.on('failed', (err) => {
+    console.log(`Notification job #${notification_job.id} failed: ${err}`);
   })
 
   notification_job.on('complete', () => {
-    console.log(`Notification job ${notification_job.id} completed`);
+    console.log(`Notification job #${notification_job.id} completed`);
   })
+
+  notification_job.on('progress', (progress) => {
+    console.log(`Notification job #${notification_job.id} ${progress}% complete`);
+  });
 }
