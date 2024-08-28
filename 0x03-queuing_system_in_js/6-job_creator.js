@@ -2,8 +2,8 @@ const kue = require('kue');
 
 const push_notification_code = kue.createQueue();
 const jobData = {
-  phoneNumber: 'string',
-  message: 'string',
+  phoneNumber: '34567890987654',
+  message: 'This is your invitation to the event',
 };
 
 const notification_job = push_notification_code.create('notification', jobData).save((err) => {
